@@ -3,152 +3,46 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-/* Layout */
-import Layout from '@/layout'
+//引入其他route--菜单route
+import baseroute from './routes/baseroute'
+import tables from './routes/tables'
+import ct_menus from './routes/ct_menus'
+import c_shape_menus from './routes/c_shape_menu'
+import wktype_menus from './routes/wktype'
+import ptype_menus from './routes/ptype'
+import report_menus from './routes/report'
+import webpage_menus from './routes/webpega'
+import new_person_menus from './routes/new_person'
 
 /**
- * Note: sub-menu only appear when route children.length >= 1
- * Detail see: https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
- *
- * hidden: true                   if set true, item will not show in the sidebar(default is false)
- * alwaysShow: true               if set true, will always show the root menu
- *                                if not set alwaysShow, when item has more than one children route,
- *                                it will becomes nested mode, otherwise not show the root menu
- * redirect: noRedirect           if set noRedirect will no redirect in the breadcrumb
- * name:'router-name'             the name is used by <keep-alive> (must set!!!)
- * meta : {
-    roles: ['admin','editor']    control the page roles (you can set multiple roles)
-    title: 'title'               the name show in sidebar and breadcrumb (recommend set)
-    icon: 'svg-name'/'el-icon-x' the icon show in the sidebar
-    breadcrumb: false            if set false, the item will hidden in breadcrumb(default is true)
-    activeMenu: '/example/list'  if set path, the sidebar will highlight the path you set
-  }
- */
+*注意：子菜单仅在路由子项时显示。长度>=1
+*详情请参见：https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
 
-/**
- * constantRoutes
- * a base page that does not have permission requirements
- * all roles can be accessed
- */
+*隐藏：true如果设置为true，项目将不会显示在侧栏中（默认值为false）
+*alwaysShow：true如果设置为true，将始终显示根菜单
+*如果未设置alwaysShow，则当项目具有多个子路由时，
+*它将变为嵌套模式，否则不显示根菜单
+*重定向：noRedirect如果设置noRedirect，则在面包屑中不会重定向
+*名称：'router-name'该名称由<保持活动>使用（必须设置！！！）
+*元数据：{
+        角色：[“admin”、“editor”]控制页面角色（可以设置多个角色）
+        标题：“title”侧边栏和面包屑中显示的名称（推荐设置）
+        图标：“svg名称”/“el-icon-x”侧边栏中显示的图标
+        面包屑：false如果设置为false，则该项目将隐藏在面包屑中（默认为true）
+        活动菜单：“/示例/列表”如果设置路径，侧栏将突出显示您设置的路径
+}
+*/
+
 export const constantRoutes = [
-  //登录页面
-  {
-    path: '/login',
-    component: () => import('@/views/login/index'),
-    hidden: true
-  },
-
-  //错误页面
-  {
-    path: '/404',
-    component: () => import('@/views/404'),
-    hidden: true
-  },
-
-  //首页
-  {
-    path: '/',
-    component: Layout,
-    redirect: '/dashboard',
-    children: [{
-      path: 'dashboard',
-      name: 'Dashboard',
-      component: () => import('@/views/dashboard/index'),
-      meta: { title: 'SFIS首页', icon: 'dashboard' }
-    }]
-  },
-
-  //表格展示页
-  {
-    path: '/example',
-    component: Layout,
-    redirect: '/example/table',
-    name: 'Example',
-    meta: { title: 'Example', icon: 'el-icon-s-help' },
-    children: [
-      {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: '表格', icon: 'table' }
-      }
-    ]
-  },
-
-  //表单页面
-  {
-    path: '/form',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        name: 'Form',
-        component: () => import('@/views/form/index'),
-        meta: { title: '文章编辑', icon: 'form' }
-      }
-    ]
-  },
-
-  //三级菜单页
-  {
-    path: '/nested',
-    component: Layout,
-    redirect: '/nested/menu1',
-    name: 'Nested',
-    meta: {
-      title: '菜单A',
-      icon: 'nested'
-    },
-    children: [
-      {
-        path: 'menu1',
-        component: () => import('@/views/nested/menu1/index'), // Parent router-view
-        name: 'Menu1',
-        meta: { title: 'Menu1' },
-        children: [
-          {
-            path: 'menu1-1',
-            component: () => import('@/views/nested/menu1/menu1-1'),
-            name: 'Menu1-1',
-            meta: { title: 'Menu1-1' }
-          },
-          {
-            path: 'menu1-2',
-            component: () => import('@/views/nested/menu1/menu1-2'),
-            name: 'Menu1-2',
-            meta: { title: 'Menu1-2' },
-            children: [
-              {
-                path: 'menu1-2-1',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
-                name: 'Menu1-2-1',
-                meta: { title: 'Menu1-2-1' }
-              },
-              {
-                path: 'menu1-2-2',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
-                name: 'Menu1-2-2',
-                meta: { title: 'Menu1-2-2' }
-              }
-            ]
-          },
-          {
-            path: 'menu1-3',
-            component: () => import('@/views/nested/menu1/menu1-3'),
-            name: 'Menu1-3',
-            meta: { title: 'Menu1-3' }
-          }
-        ]
-      },
-      {
-        path: 'menu2',
-        component: () => import('@/views/nested/menu2/index'),
-        name: 'Menu2',
-        meta: { title: 'menu2' }
-      }
-    ]
-  },
-
+  ...baseroute,
+  ...tables,
+  ...new_person_menus,
+  ...ct_menus,
+  ...c_shape_menus,
+  ...wktype_menus,
+  ...ptype_menus,
+  ...report_menus,
+  ...webpage_menus,
   // 404页必须放在末尾 !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
