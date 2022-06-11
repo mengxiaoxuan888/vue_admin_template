@@ -31,18 +31,21 @@ import Layout from '@/layout'
  * all roles can be accessed
  */
 export const constantRoutes = [
+  //登录页面
   {
     path: '/login',
     component: () => import('@/views/login/index'),
     hidden: true
   },
 
+  //错误页面
   {
     path: '/404',
     component: () => import('@/views/404'),
     hidden: true
   },
 
+  //首页
   {
     path: '/',
     component: Layout,
@@ -51,10 +54,11 @@ export const constantRoutes = [
       path: 'dashboard',
       name: 'Dashboard',
       component: () => import('@/views/dashboard/index'),
-      meta: { title: 'Dashboard', icon: 'dashboard' }
+      meta: { title: 'SFIS首页', icon: 'dashboard' }
     }]
   },
 
+  //表格展示页
   {
     path: '/example',
     component: Layout,
@@ -66,17 +70,12 @@ export const constantRoutes = [
         path: 'table',
         name: 'Table',
         component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
-      },
-      {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
+        meta: { title: '表格', icon: 'table' }
       }
     ]
   },
 
+  //表单页面
   {
     path: '/form',
     component: Layout,
@@ -85,18 +84,19 @@ export const constantRoutes = [
         path: 'index',
         name: 'Form',
         component: () => import('@/views/form/index'),
-        meta: { title: 'Form', icon: 'form' }
+        meta: { title: '文章编辑', icon: 'form' }
       }
     ]
   },
 
+  //三级菜单页
   {
     path: '/nested',
     component: Layout,
     redirect: '/nested/menu1',
     name: 'Nested',
     meta: {
-      title: 'Nested',
+      title: '菜单A',
       icon: 'nested'
     },
     children: [
@@ -149,18 +149,7 @@ export const constantRoutes = [
     ]
   },
 
-  {
-    path: 'external-link',
-    component: Layout,
-    children: [
-      {
-        path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
-        meta: { title: 'External Link', icon: 'link' }
-      }
-    ]
-  },
-
-  // 404 page must be placed at the end !!!
+  // 404页必须放在末尾 !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
 
@@ -178,4 +167,5 @@ export function resetRouter() {
   router.matcher = newRouter.matcher // reset router
 }
 
+//暴露接口出去
 export default router

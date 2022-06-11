@@ -12,6 +12,7 @@
 <script>
 import pathToRegexp from 'path-to-regexp'
 
+//面包屑组件
 export default {
   data() {
     return {
@@ -33,7 +34,7 @@ export default {
       const first = matched[0]
 
       if (!this.isDashboard(first)) {
-        matched = [{ path: '/dashboard', meta: { title: 'Dashboard' }}].concat(matched)
+        matched = [{ path: '/dashboard', meta: { title: 'SFIS首页' }}].concat(matched)
       }
 
       this.levelList = matched.filter(item => item.meta && item.meta.title && item.meta.breadcrumb !== false)
@@ -43,7 +44,7 @@ export default {
       if (!name) {
         return false
       }
-      return name.trim().toLocaleLowerCase() === 'Dashboard'.toLocaleLowerCase()
+      return name.trim().toLocaleLowerCase() === 'SFIS首页'.toLocaleLowerCase()
     },
     pathCompile(path) {
       // To solve this problem https://github.com/PanJiaChen/vue-element-admin/issues/561
