@@ -15,6 +15,11 @@ import router from './router'
 import '@/icons' // icon
 import '@/permission' // permission control
 
+import axios from 'axios'
+Vue.prototype.$axios = axios
+//配置请求的跟路径
+axios.defaults.baseURL='/api'
+
 /**
  * If you don't want to use mock-server
  * you want to use MockJs for mock api

@@ -3,10 +3,10 @@ import Layout from '@/layout'
 
 export const report_menus = [
     {
-        path: '/nested',
+        path: '/report',
         component: Layout,
-        redirect: '/nested/menu1',
-        name: 'Nested',
+        redirect: '/report/menu1',
+        name: 'Report',
         meta: {
             title: '报表',
             icon: 'nested'
@@ -14,13 +14,13 @@ export const report_menus = [
         children: [
             {
                 path: 'menu1',
-                component: () => import('@/views/nested/menu1/index'), // Parent router-view
+                component: () => import('@/views/report/menu1/index'), // Parent router-view
                 name: 'Menu1',
                 meta: { title: 'WKD03' }
             },
             {
                 path: 'menu2',
-                component: () => import('@/views/nested/menu2/index'),
+                component: () => import('@/views/report/menu2/index'),
                 name: 'Menu2',
                 meta: { title: 'WKD04' }
             }

@@ -30,6 +30,15 @@ module.exports = {
   lintOnSave: process.env.NODE_ENV === 'development',
   productionSourceMap: false,
   devServer: {
+    proxy:{
+      '/api':{
+        target:'http://localhost:3000',//填写后台接口地址
+        changeOrigin:true,//设置允许跨域
+        pathRewrite: {
+          '^/api': '/'
+        }
+      }
+    },
     port: port,
     open: true,
     overlay: {

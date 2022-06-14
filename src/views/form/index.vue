@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <el-form ref="form" :model="form" label-width="120px">
+    <el-form ref="form" :model="form" label-width="120px" action="">
       <el-form-item label="文章标题">
         <el-input v-model="form.name" />
       </el-form-item>
@@ -27,7 +27,11 @@
   </div>
 </template>
 
+
+
+
 <script>
+import axios from 'axios';
 export default {
   data() {
     return {
@@ -40,7 +44,26 @@ export default {
   },
   methods: {
     onSubmit() {
-      this.$message('你点击了提交按钮！')
+      let formData = new FormData();
+      for(var key in this.form){
+        formData.append(key,this.form[key]);
+      }
+ 
+      axios({
+	      method:"post",
+	      url:"/api/form/post",
+	      headers: {
+		      "Content-Type": "multipart/form-data",
+          "Access-Control-Allow-Origin":"*"
+	      },
+	      withCredentials:true,
+	      data:formData
+	    }).then((res)=>{
+        console.log(res);
+      });
+
+      //this.$message('你点击了提交按钮！')
+      //console.log(this.form.name,this.form.region,this.form.desc)
     },
     onCancel() {
       this.$message({

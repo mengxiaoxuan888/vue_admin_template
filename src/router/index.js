@@ -12,7 +12,8 @@ import wktype_menus from './routes/wktype'
 import ptype_menus from './routes/ptype'
 import report_menus from './routes/report'
 import webpage_menus from './routes/webpega'
-import new_person_menus from './routes/new_person'
+//import new_person_menus from './routes/new_person'
+import novice from './routes/novice'
 
 /**
 *注意：子菜单仅在路由子项时显示。长度>=1
@@ -36,13 +37,14 @@ import new_person_menus from './routes/new_person'
 export const constantRoutes = [
   ...baseroute,
   ...tables,
-  ...new_person_menus,
-  ...ct_menus,
-  ...c_shape_menus,
-  ...wktype_menus,
-  ...ptype_menus,
-  ...report_menus,
-  ...webpage_menus,
+  //...new_person_menus,
+  //...ct_menus,
+  //...c_shape_menus,
+  //...wktype_menus,
+  //...ptype_menus,
+  //...report_menus,
+  //...webpage_menus,
+  ...novice,
   // 404页必须放在末尾 !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
