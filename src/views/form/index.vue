@@ -44,26 +44,23 @@ export default {
   },
   methods: {
     onSubmit() {
-      let formData = new FormData();
-      for(var key in this.form){
-        formData.append(key,this.form[key]);
-      }
+      // let formData = new FormData();
+      // for(var key in this.form){
+      //   formData.append(key,this.form[key]);
+      // }
  
       axios({
 	      method:"post",
-	      url:"/api/form/post",
+	      //url:"/api/form/post",
+        url:"/api/form/addarticle",
 	      headers: {
-		      "Content-Type": "multipart/form-data",
-          "Access-Control-Allow-Origin":"*"
+		      "Content-Type": "multipart/form-data"
 	      },
 	      withCredentials:true,
-	      data:formData
+	      data:this.form
 	    }).then((res)=>{
         console.log(res);
       });
-
-      //this.$message('你点击了提交按钮！')
-      //console.log(this.form.name,this.form.region,this.form.desc)
     },
     onCancel() {
       this.$message({
