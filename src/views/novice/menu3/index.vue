@@ -21,7 +21,7 @@ export default {
   },
   mounted(){
     //通过get请求（URL地址参数拼接）去调后台接口，并打印响应信息
-    this.$axios.get('/novice/getmenu').then(res=>{   //这里使用箭头函数的形式
+    this.$axios.get('/api/novice/getmenu').then(res=>{   //这里使用箭头函数的形式
       console.log(res.data,"响应信息")
       this.result=res.data
     })

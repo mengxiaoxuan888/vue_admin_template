@@ -6,9 +6,9 @@ export const tables = [
   {
     path: '/example',
     component: Layout,
-    redirect: '/example/table',
-    name: 'Example',
-    meta: { title: 'Example', icon: 'el-icon-s-help' },
+    //redirect: '/example/table',
+    //name: 'Example',
+    //meta: { title: '社区', icon: 'el-icon-s-help' },
     children: [
       {
         path: 'table',
