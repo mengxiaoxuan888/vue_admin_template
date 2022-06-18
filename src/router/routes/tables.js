@@ -6,15 +6,21 @@ export const tables = [
   {
     path: '/example',
     component: Layout,
-    //redirect: '/example/table',
-    //name: 'Example',
-    //meta: { title: '社区', icon: 'el-icon-s-help' },
+    redirect: '/example/table',
+    name: 'Example',
+    meta: { title: '社区', icon: 'el-icon-s-help' },
     children: [
       {
         path: 'table',
         name: 'Table',
-        component: () => import('@/views/table/index'),
+        component: () => import('@/views/table/tablelist/index'),
         meta: { title: '社区文章', icon: 'table' }
+      },
+      {
+        path: 'tableshow',
+        name: 'Tableshow',
+        component: () => import('@/views/table/tableshow/index'),
+        meta: { title: '展示文章', icon: 'table' }
       }
     ]
   },

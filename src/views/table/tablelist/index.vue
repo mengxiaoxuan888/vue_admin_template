@@ -16,7 +16,8 @@
       </el-table-column>
       <el-table-column label="文章标题">
         <template slot-scope="scope">
-          {{ scope.row.name }}
+          <!-- <el-link href="/#/example/tableshow"  type="primary">{{ scope.row.name }}</el-link> -->
+          <router-link :to="{name:'Tableshow',params:{id:scope.row.id}}" style="color:darkblue;font-size: 16px;">{{ scope.row.name }}</router-link>
         </template>
       </el-table-column>
       <el-table-column label="类别" width="110" align="center">
