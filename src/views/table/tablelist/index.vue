@@ -30,6 +30,14 @@
           {{ scope.row.desc }}
         </template>
       </el-table-column>
+      <el-table-column label="操作" width="180" align="center">
+        <template slot-scope="scope">
+          <el-row>
+            <el-button class="bianju" size="small" type="primary" @click="change(scope.row.id,scope.row.region)" v-model="scope.row.id">修改</el-button>
+            <el-button class="bianju" size="small" type="danger">删除</el-button>
+          </el-row>
+        </template>
+      </el-table-column>
     </el-table>
     <el-pagination
       @size-change="handleSizeChange"
@@ -45,6 +53,7 @@
 
 <script>
 import { getList } from '@/api/table'
+import { MessageBox } from 'element-ui'
 
 export default {
   filters: {
@@ -96,6 +105,28 @@ export default {
         this.listLoading = false
       })
     },
+    //点击修改按钮触发的事件
+    change(id,region) {
+        this.$confirm('是否对该文章进行修改?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          console.log("要修改的文章是："+id+region);
+          this.$router.push({
+            path:'/form/index',
+            query: { 
+                    id: id, 
+                    region: region
+                  }
+          })
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '取消修改'
+          });          
+        });
+    },
 
 
     //获取对应页数数据
@@ -145,3 +176,8 @@ export default {
   }
 }
 </script>
+<style scoped>
+.bianju{
+  margin-top: 3px;
+}
+</style>

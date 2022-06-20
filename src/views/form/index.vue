@@ -20,7 +20,8 @@
         <el-input v-model="form.desc" type="textarea" :autosize="{ minRows: 15, maxRows: 30}"/>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSubmit">提交文章</el-button>
+        <el-button type="primary" @click="onSubmit" v-show="flag">添加文章</el-button>
+        <el-button type="danger" @click="onSubmit" v-show="!flag">修改文章</el-button>
         <el-button @click="onCancel">取消</el-button>
       </el-form-item>
     </el-form>
@@ -39,8 +40,13 @@ export default {
         name: '',
         region: '',
         desc: ''
-      }
+      },
+      flag:true//用于判断显示添加按钮还是修改按钮
+
     }
+  },
+  created(){
+    this.gettable()
   },
   methods: {
     onSubmit() {
@@ -67,6 +73,22 @@ export default {
         message: '你点击了取消按钮！',
         type: 'warning'
       })
+    },
+    gettable(){ 
+      if(this.$route.query.id){//判断只有当有参数时才执行
+        this.flag=false
+        console.log(this.$route.query)//获取路由地址
+        console.log(this.$route.query.id)//获取路由id参数
+        console.log(this.$route.query.region)//获取路由region参数
+        this.$axios.get('/api/table/gettableshow',{  //params参数必写 , 如果没有参数传{}也可以
+                        params: {  
+                                  id: this.$route.query.id//文章id
+                                }
+                      }).then(res=>{   //这里使用箭头函数的形式
+                                  console.log(res.data,"响应信息")
+                                  this.form=res.data[0]
+        })
+      }  
     }
   }
 }
