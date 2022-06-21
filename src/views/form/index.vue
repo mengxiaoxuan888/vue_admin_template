@@ -50,7 +50,7 @@ export default {
   },
   methods: {
     //添加文章
-    onSubmit() {
+    onSubmit1() {
       // let formData = new FormData();
       // for(var key in this.form){
       //   formData.append(key,this.form[key]);
@@ -67,17 +67,50 @@ export default {
 	      data:this.form
 	    }).then((res)=>{
         console.log(res);
+        this.$message({
+            type: 'info',
+            message: '文章添加成功'
+          });
       });
     },
-    onCancel() {
-      this.$message({
-        message: '你点击了取消按钮！',
-        type: 'warning'
-      })
+
+    //修改文章
+    onSubmit() {
+        this.$confirm('此操作将添加该文章, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+              axios({
+	              method:"post",
+                url:"/api/form/addarticle",
+	              headers: {
+		               "Content-Type": "multipart/form-data"
+	              },
+	              withCredentials:true,
+	              data:this.form
+	            }).then((res)=>{ 
+                console.log(res);
+                this.$router.push({
+                                  path:'/example/tableshow',//跳转到页面展示页
+                                  query: { 
+                                          id: res.data.id
+                                        }
+                });
+                console.log(this.form.id)
+                console.log("数据添加成功,已经跳转到文章展示页!")
+              });
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消添加'
+          });          
+        });
     },
+
     //修改文章
     changeSubmit() {
-        this.$confirm('此操作将修改该文件, 是否继续?', '提示', {
+        this.$confirm('此操作将修改该文章, 是否继续?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
