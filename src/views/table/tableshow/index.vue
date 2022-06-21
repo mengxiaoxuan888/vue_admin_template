@@ -25,6 +25,10 @@ export default {
   },
   created(){
       this.id=this.$route.params;
+      if(!this.id.id){
+        this.id=this.$route.query;
+      }
+      console.log("获取路由参数:",this.$route)
       console.log("获取的文章ID是:",this.id.id);
       if(this.id.id){
         this.flag=true
