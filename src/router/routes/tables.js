@@ -21,6 +21,12 @@ export const tables = [
         name: 'Tableshow',
         component: () => import('@/views/table/tableshow/index'),
         meta: { title: '展示文章', icon: 'table' }
+      },
+      {
+        path: 'tinymce',
+        component: () => import('@/views/table/tableeditor/tinymce'),
+        name: 'TinymceDemo',
+        meta: { title: 'Tinymce' }
       }
     ]
   },

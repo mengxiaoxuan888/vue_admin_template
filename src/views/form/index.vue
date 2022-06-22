@@ -17,7 +17,8 @@
         </el-select>
       </el-form-item>
       <el-form-item label="文章编辑">
-        <el-input v-model="form.desc" type="textarea" :autosize="{ minRows: 15, maxRows: 30}"/>
+        <!-- <el-input id="tinydemo" v-model="form.desc" type="textarea" :autosize="{ minRows: 15, maxRows: 30}"/> -->
+        <tinymce v-model="form.desc" :height="300" />
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit" v-show="flag">添加文章</el-button>
@@ -30,10 +31,11 @@
 
 
 
-
 <script>
 import axios from 'axios';
+import Tinymce from '@/components/Tinymce'
 export default {
+  components: { Tinymce },
   data() {
     return {
       form: {
@@ -49,31 +51,6 @@ export default {
     this.gettable()
   },
   methods: {
-    //添加文章
-    onSubmit1() {
-      // let formData = new FormData();
-      // for(var key in this.form){
-      //   formData.append(key,this.form[key]);
-      // }
- 
-      axios({
-	      method:"post",
-	      //url:"/api/form/post",
-        url:"/api/form/addarticle",
-	      headers: {
-		      "Content-Type": "multipart/form-data"
-	      },
-	      withCredentials:true,
-	      data:this.form
-	    }).then((res)=>{
-        console.log(res);
-        this.$message({
-            type: 'info',
-            message: '文章添加成功'
-          });
-      });
-    },
-
     //修改文章
     onSubmit() {
         this.$confirm('此操作将添加该文章, 是否继续?', '提示', {
