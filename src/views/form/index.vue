@@ -53,6 +53,13 @@ export default {
   methods: {
     //修改文章
     onSubmit() {
+      console.log("标题是：",this.form.name.trim())
+      console.log("类别是：",this.form.region.trim())
+      if(!this.form.name.trim()){
+        this.$alert('标题不可为空', '提示')
+      }else if(!this.form.region.trim()){
+        this.$alert('请选择类别', '提示')
+      }else(
         this.$confirm('此操作将添加该文章, 是否继续?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
@@ -82,11 +89,17 @@ export default {
             type: 'info',
             message: '已取消添加'
           });          
-        });
+        })
+      )
     },
 
     //修改文章
     changeSubmit() {
+      if(!this.form.name.trim()){
+        this.$alert('标题不可为空', '提示')
+      }else if(!this.form.region.trim()){
+        this.$alert('请选择类别', '提示')
+      }else(
         this.$confirm('此操作将修改该文章, 是否继续?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
@@ -116,7 +129,8 @@ export default {
             type: 'info',
             message: '已取消修改'
           });          
-        });
+        })
+      )
     },
     //取消按钮
     onCancel() {

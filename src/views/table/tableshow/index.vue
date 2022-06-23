@@ -2,7 +2,7 @@
   <div style="padding:30px;">
     <div><h1> {{result.name}}</h1></div>
     <el-alert :closable="false" :title=result.region />
-    <div class="main"><p>{{result.desc}}</p> </div>
+    <div class="main" v-html="result.desc"></div>
     <el-alert :closable="false">
       <el-row>
         <el-button  size="small" type="primary" @click="change(result.id,result.region)" v-show="flag">修改</el-button>
