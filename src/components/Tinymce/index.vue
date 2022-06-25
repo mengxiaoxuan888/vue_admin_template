@@ -1,9 +1,9 @@
 <template>
   <div :class="{fullscreen:fullscreen}" class="tinymce-container" :style="{width:containerWidth}">
     <textarea :id="tinymceId" class="tinymce-textarea" />
-    <div class="editor-custom-btn-container">
+    <!-- <div class="editor-custom-btn-container">
       <editorImage color="#1890ff" class="editor-upload-btn" @successCBK="imageSuccessCBK" />
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -12,6 +12,7 @@
  * docs:
  * https://panjiachen.github.io/vue-element-admin-site/feature/component/rich-editor.html#tinymce
  */
+import axios from 'axios'
 import editorImage from './components/EditorImage'
 import plugins from './plugins'
 import toolbar from './toolbar'
@@ -22,7 +23,7 @@ const tinymceCDN = 'https://cdn.jsdelivr.net/npm/tinymce-all-in-one@4.9.3/tinymc
 
 export default {
   name: 'Tinymce',
-  components: { editorImage },
+  //components: { editorImage },
   props: {
     id: {
       type: String,
@@ -67,7 +68,8 @@ export default {
         'zh': 'zh_CN',
         'es': 'es_MX',
         'ja': 'ja'
-      }
+      },
+      picUrl:"",
     }
   },
   computed: {
@@ -148,43 +150,29 @@ export default {
             _this.fullscreen = e.state
           })
         },
-        // it will try to keep these URLs intact
-        // https://www.tiny.cloud/docs-3x/reference/configuration/Configuration3x@convert_urls/
-        // https://stackoverflow.com/questions/5196205/disable-tinymce-absolute-to-relative-url-conversions
-        convert_urls: false
-        // 整合七牛上传
-        // images_dataimg_filter(img) {
-        //   setTimeout(() => {
-        //     const $image = $(img);
-        //     $image.removeAttr('width');
-        //     $image.removeAttr('height');
-        //     if ($image[0].height && $image[0].width) {
-        //       $image.attr('data-wscntype', 'image');
-        //       $image.attr('data-wscnh', $image[0].height);
-        //       $image.attr('data-wscnw', $image[0].width);
-        //       $image.addClass('wscnph');
-        //     }
-        //   }, 0);
-        //   return img
-        // },
-        // images_upload_handler(blobInfo, success, failure, progress) {
-        //   progress(0);
-        //   const token = _this.$store.getters.token;
-        //   getToken(token).then(response => {
-        //     const url = response.data.qiniu_url;
-        //     const formData = new FormData();
-        //     formData.append('token', response.data.qiniu_token);
-        //     formData.append('key', response.data.qiniu_key);
-        //     formData.append('file', blobInfo.blob(), url);
-        //     upload(formData).then(() => {
-        //       success(url);
-        //       progress(100);
-        //     })
-        //   }).catch(err => {
-        //     failure('出现未知问题，刷新页面，或者联系程序员')
-        //     console.log(err);
-        //   });
-        // },
+        convert_urls: false,
+        paste_data_images: true,
+        //自定义上传单个图片功能
+        images_upload_handler: function (blobInfo, success, failure){
+                        //有图片上传请用这个FormData，当然这个也能添加字符之类的，只需要formData.append(name,object)就可以了，如果有更好的请自己搞去
+                        let formData = new FormData()
+                        console.log(blobInfo.filename())
+                        formData.append('img',blobInfo.blob())  //记住这个 name:'img'，一会服务器端代码里需要
+                        let configs = { // 上传文件 请求头要设置成下面这样
+                            headers:{'Content-Type':'multipart/form-data'} //给我写死，别作死，能复制就复制
+                        };
+                        axios.post('/api/form/uploadImage',formData,configs)  //因为在vue.config.js和main.js里配置了,所以这里面的路径应该是 我的服务器地址/fileUpload/uploadImage/,其实/fileUpload/uploadImage/这个路径是和服务器里的地址对应,可以随意修改
+                            .then(response =>{ //从服务器返回数据的回调
+                                console.log(response.data['imgurl'])
+                                if(response.data['status']==1){ //这个status是服务器代码里写的名称
+                                    success(response.data['imgurl'])
+                                    console.log("成功了")
+                                }else{
+                                    console.log("失败了")
+                                    failure('上传失败！')
+                                }
+                            })
+        },
       })
     },
     destroyTinymce() {
@@ -203,9 +191,9 @@ export default {
     getContent() {
       window.tinymce.get(this.tinymceId).getContent()
     },
-    imageSuccessCBK(arr) {
-      arr.forEach(v => window.tinymce.get(this.tinymceId).insertContent(`<img class="wscnph" src="${v.url}" >`))
-    }
+    // imageSuccessCBK(arr) {
+    //   arr.forEach(v => window.tinymce.get(this.tinymceId).insertContent(`<img class="wscnph" src="${v.url}" >`))
+    // }
   }
 }
 </script>
