@@ -121,7 +121,7 @@ export default {
         language: this.languageTypeList['zh'],
         height: this.height,
         body_class: 'panel-body ',
-        object_resizing: false,
+        object_resizing: true,
         toolbar: this.toolbar.length > 0 ? this.toolbar : toolbar,
         menubar: this.menubar,
         plugins: plugins,
@@ -156,12 +156,27 @@ export default {
         images_upload_handler: function (blobInfo, success, failure){
                         //有图片上传请用这个FormData，当然这个也能添加字符之类的，只需要formData.append(name,object)就可以了，如果有更好的请自己搞去
                         let formData = new FormData()
+                        console.log(blobInfo)
+                        console.log(blobInfo.blob())
+                        console.log(blobInfo.blob().size)
+                        console.log(blobInfo.blob().type)
                         console.log(blobInfo.filename())
                         formData.append('img',blobInfo.blob())  //记住这个 name:'img'，一会服务器端代码里需要
-                        let configs = { // 上传文件 请求头要设置成下面这样
+                        var imagetype = ['image/jpeg','image/png','image/jpg','image/gif','image/bmp']//设置图片格式
+
+
+                        var image_size = blobInfo.blob().size/1024 //判断图片有多少K
+                        var maximage_size = 100000 //100000K差不多100M
+                        //var maximage_size = 10
+                        if(image_size > maximage_size){
+                          failure('图片不可大于 100M !!!')
+                        }else if(imagetype.indexOf(blobInfo.blob().type) == -1){
+                          failure('图片格式不对,只允许 JPEG,PNG,JPG,GIF,BMP 格式')
+                        }else{
+                          let configs = { // 上传文件 请求头要设置成下面这样
                             headers:{'Content-Type':'multipart/form-data'} //给我写死，别作死，能复制就复制
-                        };
-                        axios.post('/api/form/uploadImage',formData,configs)  //因为在vue.config.js和main.js里配置了,所以这里面的路径应该是 我的服务器地址/fileUpload/uploadImage/,其实/fileUpload/uploadImage/这个路径是和服务器里的地址对应,可以随意修改
+                          };
+                          axios.post('/api/form/uploadImage',formData,configs)  //因为在vue.config.js和main.js里配置了,所以这里面的路径应该是 我的服务器地址/fileUpload/uploadImage/,其实/fileUpload/uploadImage/这个路径是和服务器里的地址对应,可以随意修改
                             .then(response =>{ //从服务器返回数据的回调
                                 console.log(response.data['imgurl'])
                                 if(response.data['status']==1){ //这个status是服务器代码里写的名称
@@ -171,7 +186,8 @@ export default {
                                     console.log("失败了")
                                     failure('上传失败！')
                                 }
-                            })
+                          })
+                        }                      
         },
       })
     },

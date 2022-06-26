@@ -4,16 +4,16 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 //引入其他route--菜单route
-import baseroute from './routes/baseroute'
-import tables from './routes/tables'
-import ct_menus from './routes/ct_menus'
-import c_shape_menus from './routes/c_shape_menu'
-import wktype_menus from './routes/wktype'
-import ptype_menus from './routes/ptype'
-import report_menus from './routes/report'
-import webpage_menus from './routes/webpega'
+import baseroute from './routes/baseroute'//基础路由
+import tables from './routes/tables'//社区文章列表
+//import ct_menus from './routes/ct_menus'//CT程式
+//import c_shape_menus from './routes/c_shape_menu'//C#程式
+//import wktype_menus from './routes/wktype'//WKTYPE
+//import ptype_menus from './routes/ptype'//ptype
+//import report_menus from './routes/report'//报表
+//import webpage_menus from './routes/webpega'//网页
 //import new_person_menus from './routes/new_person'
-import novice from './routes/novice'
+import novice from './routes/novice'//新手村
 
 /**
 *注意：子菜单仅在路由子项时显示。长度>=1
@@ -35,16 +35,16 @@ import novice from './routes/novice'
 */
 
 export const constantRoutes = [
-  ...baseroute,
-  ...tables,
+  ...baseroute,//基础路由
+  ...tables,//社区文章列表
   //...new_person_menus,
-  //...ct_menus,
-  //...c_shape_menus,
-  //...wktype_menus,
-  //...ptype_menus,
-  //...report_menus,
-  //...webpage_menus,
-  ...novice,
+  //...ct_menus,//CT程式
+  //...c_shape_menus,//C#程式
+  //...wktype_menus,//WKTYPE
+  //...ptype_menus,//ptype
+  //...report_menus,//报表
+  //...webpage_menus,//网页
+  ...novice,//新手村
   // 404页必须放在末尾 !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
