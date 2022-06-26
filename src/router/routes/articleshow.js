@@ -5,14 +5,14 @@ export const ct_menus = [
 
     //表单页面
     {
-        path: '/ct',
+        path: '/articleshow',
         component: Layout,
         children: [
         {
             path: 'index',
-            name: 'Ct',
-            component: () => import('@/views/ct/index'),
-            meta: { title: 'CT程式', icon: 'nested' }
+            name: 'Articleshow',
+            component: () => import('@/views/articleshow/index'),
+            meta: { title: '文章展示', icon: 'nested' }
         }
         ]
     }
