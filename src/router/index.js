@@ -8,7 +8,7 @@ import baseroute from './routes/baseroute'//基础路由
 import tables from './routes/tables'//社区文章列表
 import ct_menus from './routes/ct_menus'//CT程式
 import articleshow from './routes/articleshow'//文章展示
-//import c_shape_menus from './routes/c_shape_menu'//C#程式
+import c_shape_menus from './routes/c_shape_menu'//C#程式
 //import wktype_menus from './routes/wktype'//WKTYPE
 //import ptype_menus from './routes/ptype'//ptype
 //import report_menus from './routes/report'//报表
@@ -41,7 +41,7 @@ export const constantRoutes = [
   //...new_person_menus,
   ...articleshow,//文章展示
   ...ct_menus,//CT程式
-  //...c_shape_menus,//C#程式
+  ...c_shape_menus,//C#程式
   //...wktype_menus,//WKTYPE
   //...ptype_menus,//ptype
   //...report_menus,//报表
