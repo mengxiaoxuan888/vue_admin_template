@@ -31,7 +31,7 @@ export const tables = [
     ]
   },
 
-  //表单页面
+  //社区编辑文章
   {
     path: '/form',
     component: Layout,
@@ -40,7 +40,21 @@ export const tables = [
         path: 'index',
         name: 'Form',
         component: () => import('@/views/form/index'),
-        meta: { title: '文章编辑', icon: 'form' }
+        meta: { title: '社区编辑文章', icon: 'form' }
+      }
+    ]
+  },
+
+  //归类文章编辑
+  {
+    path: '/formprojects',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'Formprojects',
+        component: () => import('@/views/formprojects/index'),
+        meta: { title: '归类文章编辑', icon: 'form' }
       }
     ]
   }
