@@ -43,6 +43,7 @@ export default {
   data() {
     return {
       form: {
+        id:'',
         type:'',
         name: '',
         subname:'',
@@ -82,7 +83,7 @@ export default {
 	            }).then((res)=>{ 
                 console.log(res);
                 this.$router.push({
-                                  path:'/articleshow',//跳转到文章展示页
+                                  path:'/articleshow/index',//跳转到文章展示页
                                   query: { 
                                           id: res.data.id
                                         }
