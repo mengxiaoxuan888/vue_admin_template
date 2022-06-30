@@ -1,6 +1,6 @@
 <template>
   <div style="padding:30px;">
-    <div><h1>{{ result.subname }}</h1></div>
+    <div><h1 v-text="result.subname"></h1></div>
     <el-alert :closable="false" :title=result.name /><br/>
     <div class="main" v-text="result.introduce"></div><br/>
     <hr/>
@@ -20,7 +20,13 @@ export default {
   name:'B',
   data(){
     return {
-      result:'',
+      result:{
+        id:'',
+        name:'',
+        subname:'',
+        introduce:'',
+        details:''
+      },
       id:null,
       flag:false
     }  
@@ -58,32 +64,31 @@ export default {
     }    
   },
   methods: {
-    change(id){
-      console.log("你点击了修改按钮！")
-    }
+    // change(id){
+    //   console.log("你点击了修改按钮！")
+    // }
     //点击修改按钮触发的事件
-    // change(id,subname) {
-      // console.log("我获取到的文章id是:"+id);
-      // this.$confirm('是否对该文章进行修改?', '提示', {
-      //     confirmButtonText: '确定',
-      //     cancelButtonText: '取消',
-      //     type: 'warning'
-      // }).then(() => {
-      //     console.log("要修改的文章是："+id+subname);
-      //     this.$router.push({
-      //       path:'/form/index',
-      //       query: { 
-      //               id: id, 
-      //               subname: subname
-      //             }
-      //     })
-      //   }).catch(() => {
-      //     this.$message({
-      //       type: 'info',
-      //       message: '取消修改'
-      //     });          
-      //   });      
-    // },
+    change(id) {
+      console.log("我获取到的文章id是:"+id);
+      this.$confirm('是否对该文章进行修改?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+      }).then(() => {
+          console.log("要修改的文章是："+id);
+          this.$router.push({
+            path:'/formprojects/index',
+            query: { 
+                    id: id
+                  }
+          })
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '取消修改'
+          });          
+        });      
+    },
   }
 }
 </script>
