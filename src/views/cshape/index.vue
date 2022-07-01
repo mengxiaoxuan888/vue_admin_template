@@ -6,8 +6,11 @@
     <el-tabs tab-position="left">
       <el-tab-pane label="AUTHENTIC.HOLD">
         <el-table
-          :data="ctTableData"
+          v-loading="listLoading"
+          :data="cshape_AUTHENTIC_HOLD"
+          element-loading-text="Loading"
           height="440"
+          fit
           border
           stripe
           style="width: 100%">
@@ -45,24 +48,24 @@
                 size="mini"
                 type="primary"
                 plain
-                @click="handleShow(scope.$index, scope.row)">查看</el-button>
+                @click="handleShow(scope.row.id, scope.row)">查看</el-button>
               <el-button
                 size="mini"
                 type="warning"
                 plain
-                @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+                @click="handleEdit(scope.row.id, scope.row)">编辑</el-button>
               <el-button
                 size="mini"
                 type="danger"
                 plain
-                @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+                @click="handleDelete(scope.row.id, scope.row)">删除</el-button>
             </template>
           </el-table-column>
         </el-table>
       </el-tab-pane>
       <el-tab-pane label="CBS_SYS">
         <el-table
-          :data="ctLabelTableData"
+          :data="cshape_CBS_SYS"
           height="440"
           border
           stripe
@@ -101,24 +104,24 @@
                 size="mini"
                 type="primary"
                 plain
-                @click="handleShow(scope.$index, scope.row)">查看</el-button>
+                @click="handleShow(scope.row.id, scope.row)">查看</el-button>
               <el-button
                 size="mini"
                 type="warning"
                 plain
-                @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+                @click="handleEdit(scope.row.id, scope.row)">编辑</el-button>
               <el-button
                 size="mini"
                 type="danger"
                 plain
-                @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+                @click="handleDelete(scope.row.id, scope.row)">删除</el-button>
             </template>
           </el-table-column>
         </el-table>
       </el-tab-pane>
       <el-tab-pane label="CHK_ITEM">
         <el-table
-          :data="ctPackTableData"
+          :data="cshape_CHK_ITEM"
           height="440"
           border
           stripe
@@ -157,24 +160,24 @@
                 size="mini"
                 type="primary"
                 plain
-                @click="handleShow(scope.$index, scope.row)">查看</el-button>
+                @click="handleShow(scope.row.id, scope.row)">查看</el-button>
               <el-button
                 size="mini"
                 type="warning"
                 plain
-                @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+                @click="handleEdit(scope.row.id, scope.row)">编辑</el-button>
               <el-button
                 size="mini"
                 type="danger"
                 plain
-                @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+                @click="handleDelete(scope.row.id, scope.row)">删除</el-button>
             </template>
           </el-table-column>
         </el-table>
       </el-tab-pane>
       <el-tab-pane label="FAEREGION.XXXX">
         <el-table
-          :data="ctWeightTableData"
+          :data="cshape_FAEREGION_XXX"
           height="440"
           border
           style="width: 100%">
@@ -212,24 +215,24 @@
                 size="mini"
                 type="primary"
                 plain
-                @click="handleShow(scope.$index, scope.row)">查看</el-button>
+                @click="handleShow(scope.row.id, scope.row)">查看</el-button>
               <el-button
                 size="mini"
                 type="warning"
                 plain
-                @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+                @click="handleEdit(scope.row.id, scope.row)">编辑</el-button>
               <el-button
                 size="mini"
                 type="danger"
                 plain
-                @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+                @click="handleDelete(scope.row.id, scope.row)">删除</el-button>
             </template>
           </el-table-column>
         </el-table>
       </el-tab-pane>
       <el-tab-pane label="MLB.STOCK">
         <el-table
-          :data="cloneTrooperTableData"
+          :data="cshape_MLB_STOCK"
           height="440"
           border
           style="width: 100%">
@@ -267,24 +270,24 @@
                 size="mini"
                 type="primary"
                 plain
-                @click="handleShow(scope.$index, scope.row)">查看</el-button>
+                @click="handleShow(scope.row.id, scope.row)">查看</el-button>
               <el-button
                 size="mini"
                 type="warning"
                 plain
-                @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+                @click="handleEdit(scope.row.id, scope.row)">编辑</el-button>
               <el-button
                 size="mini"
                 type="danger"
                 plain
-                @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+                @click="handleDelete(scope.row.id, scope.row)">删除</el-button>
             </template>
           </el-table-column>
         </el-table>
       </el-tab-pane>
       <el-tab-pane label="XXXX.PQA_Report">
         <el-table
-          :data="gbSortingTableData"
+          :data="cshape_XXX_PQA_Report"
           height="440"
           border
           style="width: 100%">
@@ -322,17 +325,17 @@
                 size="mini"
                 type="primary"
                 plain
-                @click="handleShow(scope.$index, scope.row)">查看</el-button>
+                @click="handleShow(scope.row.id, scope.row)">查看</el-button>
               <el-button
                 size="mini"
                 type="warning"
                 plain
-                @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+                @click="handleEdit(scope.row.id, scope.row)">编辑</el-button>
               <el-button
                 size="mini"
                 type="danger"
                 plain
-                @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+                @click="handleDelete(scope.row.id, scope.row)">删除</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -342,136 +345,26 @@
 </template>
 
 <script>
+import { getList } from '@/api/table'
   export default {
     data() {
       return {
-        ctTableData: [{
-          id:1,
-          name:"CT",
-          subname:"BinSignal",
-          introduce:"该页面简单说明"
-        }, {
-          id:2,
-          name:"CT",
-          subname:"BinSignal",
-          introduce:"该页面简单说明"
-        }, {
-          id:3,
-          name:"CT",
-          subname:"BinSignal",
-          introduce:"该页面简单说明"
-        }, {
-          id:4,
-          name:"CT",
-          subname:"BinSignal",
-          introduce:"该页面简单说明"
-        }, {
-          id:5,
-          name:"CT",
-          subname:"BinSignal",
-          introduce:"该页面简单说明"
-        }, {
-          id:6,
-          name:"CT",
-          subname:"BinSignal",
-          introduce:"该页面简单说明"
-        }, {
-          id:7,
-          name:"CT",
-          subname:"BinSignal",
-          introduce:"该页面简单说明"
-        }],
-        ctLabelTableData: [{
-          id:1,
-          name:"CT_LABEL",
-          subname:"BinSignal",
-          introduce:"该页面简单说明"
-        }, {
-          id:2,
-          name:"CT_LABEL",
-          subname:"BinSignal",
-          introduce:"该页面简单说明"
-        }, {
-          id:3,
-          name:"CT_LABEL",
-          subname:"BinSignal",
-          introduce:"该页面简单说明"
-        }, {
-          id:4,
-          name:"CT_LABEL",
-          subname:"BinSignal",
-          introduce:"该页面简单说明"
-        }, {
-          id:5,
-          name:"CT_LABEL",
-          subname:"BinSignal",
-          introduce:"该页面简单说明"
-        }, {
-          id:6,
-          name:"CT_LABEL",
-          subname:"BinSignal",
-          introduce:"该页面简单说明"
-        }, {
-          id:7,
-          name:"CT_LABEL",
-          subname:"BinSignal",
-          introduce:"该页面简单说明"
-        }],
-        ctPackTableData: [{
-          id:1,
-          name:"CT_PACK",
-          subname:"BinSignal",
-          introduce:"该页面简单说明"
-        }, {
-          id:2,
-          name:"CT_PACK",
-          subname:"BinSignal",
-          introduce:"该页面简单说明"
-        }, {
-          id:3,
-          name:"CT_PACK",
-          subname:"BinSignal",
-          introduce:"该页面简单说明"
-        }, {
-          id:4,
-          name:"CT_PACK",
-          subname:"BinSignal",
-          introduce:"该页面简单说明"
-        }, {
-          id:5,
-          name:"CT_PACK",
-          subname:"BinSignal",
-          introduce:"该页面简单说明"
-        }, {
-          id:6,
-          name:"CT_PACK",
-          subname:"BinSignal",
-          introduce:"该页面简单说明"
-        }, {
-          id:7,
-          name:"CT_PACK",
-          subname:"BinSignal",
-          introduce:"该页面简单说明"
-        }],
-        ctWeightTableData: [{
-          id:1,
-          name:"CT_Weight",
-          subname:"BinSignal",
-          introduce:"该页面简单说明"
-        }],
-        cloneTrooperTableData: [{
-          id:1,
-          name:"CloneTrooper",
-          subname:"CloneTrooper",
-          introduce:"该页面简单说明"
-        }],
-        gbSortingTableData: [{
-          id:1,
-          name:"GBSorting",
-          subname:"CloneTrooper",
-          introduce:"该页面简单说明"
-        }]
+        listLoading: true,
+        cshape_AUTHENTIC_HOLD: null,
+        cshape_CBS_SYS: null,
+        cshape_CHK_ITEM: null,
+        cshape_FAEREGION_XXX: null,
+        cshape_MLB_STOCK: null,
+        cshape_XXX_PQA_Report: null
       }
+    },
+    created(){
+      this.get_cshape_AUTHENTIC_HOLD(),
+      this.get_cshape_CBS_SYS(),
+      this.get_cshape_CHK_ITEM(),
+      this.get_cshape_FAEREGION_XXX(),
+      this.get_cshape_MLB_STOCK(),
+      this.get_cshape_XXX_PQA_Report()
     },
     methods: {
       handleShow(index, row) {
@@ -491,7 +384,81 @@
       },
       handleDelete(index, row) {
         console.log(index+1, row);
-      }
+      },
+      get_cshape_AUTHENTIC_HOLD(){
+        this.listLoading = true
+        getList().then(response => {
+        //通过get请求（URL地址参数拼接）去调后台接口，并打印响应信息
+        this.$axios.get('/api/cshape/getauthentic',{  //params参数必写 , 如果没有参数传{}也可以
+              params: { }
+          }).then(res=>{  //这里使用箭头函数的形式
+              console.log(res.data,"hold程式数据")
+              this.cshape_AUTHENTIC_HOLD=res.data
+          })
+          //console.log(response.data.items)
+          this.listLoading = false
+        })
+      },
+      get_cshape_CBS_SYS(){
+        this.listLoading = true
+        getList().then(response => {
+        this.$axios.get('/api/cshape/getcbs',{ 
+              params: {}
+          }).then(res=>{  //这里使用箭头函数的形式
+              console.log(res.data,"cbs程式数据")
+              this.cshape_CBS_SYS=res.data
+          })
+          this.listLoading = false
+        })
+      },
+      get_cshape_CHK_ITEM(){
+        this.listLoading = true
+        getList().then(response => {
+        this.$axios.get('/api/cshape/getcbs',{ 
+              params: {}
+          }).then(res=>{  //这里使用箭头函数的形式
+              console.log(res.data,"cbs程式数据")
+              this.cshape_CHK_ITEM=res.data
+          })
+          this.listLoading = false
+        })
+      },
+      get_cshape_FAEREGION_XXX(){
+        this.listLoading = true
+        getList().then(response => {
+        this.$axios.get('/api/cshape/getcbs',{ 
+              params: {}
+          }).then(res=>{  //这里使用箭头函数的形式
+              console.log(res.data,"cbs程式数据")
+              this.cshape_FAEREGION_XXX=res.data
+          })
+          this.listLoading = false
+        })
+      },
+      get_cshape_MLB_STOCK(){
+        this.listLoading = true
+        getList().then(response => {
+        this.$axios.get('/api/cshape/getcbs',{ 
+              params: {}
+          }).then(res=>{  //这里使用箭头函数的形式
+              console.log(res.data,"cbs程式数据")
+              this.cshape_MLB_STOCK=res.data
+          })
+          this.listLoading = false
+        })
+      },
+      get_cshape_XXX_PQA_Report(){
+        this.listLoading = true
+        getList().then(response => {
+        this.$axios.get('/api/cshape/getcbs',{ 
+              params: {}
+          }).then(res=>{  //这里使用箭头函数的形式
+              console.log(res.data,"cbs程式数据")
+              this.cshape_XXX_PQA_Report=res.data
+          })
+          this.listLoading = false
+        })
+      },
     }
   }
 </script>
