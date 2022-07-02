@@ -26,27 +26,9 @@ export const wktype_menus = [
             },
             {
                 path: 'menu3',
-                //component: () => import('@/views/nested/menu3/index'),
+                component: () => import('@/views/nested/menu3/index'),
                 name: 'Menu3',
                 meta: { title: 'WKD05' }
-            },
-            {
-                path: 'menu4',
-                //component: () => import('@/views/nested/menu4/index'),
-                name: 'Menu4',
-                meta: { title: 'WKD05' }
-            },
-            {
-                path: 'menu5',
-                //component: () => import('@/views/nested/menu5/index'),
-                name: 'Menu5',
-                meta: { title: 'WKD06' }
-            },
-            {
-                path: 'menu6',
-                //component: () => import('@/views/nested/menu6/index'),
-                name: 'Menu6',
-                meta: { title: 'WKD07' }
             }
         ]
     }

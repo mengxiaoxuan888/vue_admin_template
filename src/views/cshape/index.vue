@@ -3,8 +3,8 @@
     <el-alert :closable="false" title="C#相关的程式列表">
       <router-view />
     </el-alert>
-    <el-tabs tab-position="left">
-      <el-tab-pane label="AUTHENTIC.HOLD">
+    <el-tabs tab-position="left" v-model="activeName" @tab-click="handleClick">
+      <el-tab-pane label="AUTHENTIC.HOLD" name="AUTHENTIC.HOLD">
         <el-table
           v-loading="listLoading"
           :data="cshape_AUTHENTIC_HOLD"
@@ -63,7 +63,7 @@
           </el-table-column>
         </el-table>
       </el-tab-pane>
-      <el-tab-pane label="CBS_SYS">
+      <el-tab-pane label="CBS_SYS" name="CBS_SYS">
         <el-table
           :data="cshape_CBS_SYS"
           height="440"
@@ -119,7 +119,7 @@
           </el-table-column>
         </el-table>
       </el-tab-pane>
-      <el-tab-pane label="CHK_ITEM">
+      <el-tab-pane label="CHK_ITEM" name="CHK_ITEM">
         <el-table
           :data="cshape_CHK_ITEM"
           height="440"
@@ -175,7 +175,7 @@
           </el-table-column>
         </el-table>
       </el-tab-pane>
-      <el-tab-pane label="FAEREGION.XXXX">
+      <el-tab-pane label="FAEREGION.XXXX" name="FAEREGION.XXXX">
         <el-table
           :data="cshape_FAEREGION_XXX"
           height="440"
@@ -230,7 +230,7 @@
           </el-table-column>
         </el-table>
       </el-tab-pane>
-      <el-tab-pane label="MLB.STOCK">
+      <el-tab-pane label="MLB.STOCK" name="MLB.STOCK">
         <el-table
           :data="cshape_MLB_STOCK"
           height="440"
@@ -285,7 +285,7 @@
           </el-table-column>
         </el-table>
       </el-tab-pane>
-      <el-tab-pane label="XXXX.PQA_Report">
+      <el-tab-pane label="XXXX.PQA_Report" name="XXXX.PQA_Report">
         <el-table
           :data="cshape_XXX_PQA_Report"
           height="440"
@@ -350,6 +350,7 @@ import { getList } from '@/api/table'
     data() {
       return {
         listLoading: true,
+        activeName: 'AUTHENTIC.HOLD',
         cshape_AUTHENTIC_HOLD: null,
         cshape_CBS_SYS: null,
         cshape_CHK_ITEM: null,
@@ -359,12 +360,12 @@ import { getList } from '@/api/table'
       }
     },
     created(){
-      this.get_cshape_AUTHENTIC_HOLD(),
-      this.get_cshape_CBS_SYS(),
-      this.get_cshape_CHK_ITEM(),
-      this.get_cshape_FAEREGION_XXX(),
-      this.get_cshape_MLB_STOCK(),
-      this.get_cshape_XXX_PQA_Report()
+      this.get_cshape_AUTHENTIC_HOLD()
+      // this.get_cshape_CBS_SYS(),
+      // this.get_cshape_CHK_ITEM(),
+      // this.get_cshape_FAEREGION_XXX(),
+      // this.get_cshape_MLB_STOCK(),
+      // this.get_cshape_XXX_PQA_Report()
     },
     methods: {
       handleShow(index, row) {
@@ -384,6 +385,22 @@ import { getList } from '@/api/table'
       },
       handleDelete(index, row) {
         console.log(index+1, row);
+      },
+      handleClick(tab) {//标签页点击触发
+        console.log(tab.name);
+        if(tab.name == 'AUTHENTIC.HOLD') {
+					this.get_cshape_AUTHENTIC_HOLD();
+				}else if(tab.name == 'CBS_SYS') {
+					this.get_cshape_CBS_SYS();
+				}else if(tab.name == 'CHK_ITEM') {
+					this.get_cshape_CHK_ITEM();
+				}else if(tab.name == 'FAEREGION.XXXX') {
+					this.get_cshape_FAEREGION_XXX();
+				}else if(tab.name == 'MLB.STOCK') {
+					this.get_cshape_MLB_STOCK();
+				}else if(tab.name == 'XXXX.PQA_Report') {
+					this.get_cshape_XXX_PQA_Report();
+				}
       },
       get_cshape_AUTHENTIC_HOLD(){
         this.listLoading = true

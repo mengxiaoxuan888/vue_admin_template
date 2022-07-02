@@ -3,8 +3,8 @@
     <el-alert :closable="false" title="CT相关的程式列表">
       <router-view />
     </el-alert>
-    <el-tabs type="border-card">
-      <el-tab-pane label="CT">
+    <el-tabs type="border-card" v-model="activeName" @tab-click="handleClick">
+      <el-tab-pane label="CT" name="CT">
         <el-table
           :data="ctTableData"
           height="440"
@@ -60,7 +60,7 @@
           </el-table-column>
         </el-table>
       </el-tab-pane>
-      <el-tab-pane label="CT_LABEL">
+      <el-tab-pane label="CT_LABEL" name="CT_LABEL">
         <el-table
           :data="ctLabelTableData"
           height="440"
@@ -116,7 +116,7 @@
           </el-table-column>
         </el-table>
       </el-tab-pane>
-      <el-tab-pane label="CT_PACK">
+      <el-tab-pane label="CT_PACK" name="CT_PACK">
         <el-table
           :data="ctPackTableData"
           height="440"
@@ -172,7 +172,7 @@
           </el-table-column>
         </el-table>
       </el-tab-pane>
-      <el-tab-pane label="CT_Weight">
+      <el-tab-pane label="CT_Weight" name="CT_Weight">
         <el-table
           :data="ctWeightTableData"
           height="440"
@@ -227,7 +227,7 @@
           </el-table-column>
         </el-table>
       </el-tab-pane>
-      <el-tab-pane label="CloneTrooper">
+      <el-tab-pane label="CloneTrooper" name="CloneTrooper">
         <el-table
           :data="cloneTrooperTableData"
           height="440"
@@ -282,7 +282,7 @@
           </el-table-column>
         </el-table>
       </el-tab-pane>
-      <el-tab-pane label="GBSorting">
+      <el-tab-pane label="GBSorting" name="GBSorting">
         <el-table
           :data="gbSortingTableData"
           height="440"
@@ -345,6 +345,7 @@
   export default {
     data() {
       return {
+        activeName: 'CT',
         ctTableData: [{
           id:1,
           name:"CT",
@@ -474,6 +475,9 @@
       }
     },
     methods: {
+      handleClick(tab) {
+        console.log(tab.name);
+      },
       handleShow(index, row) {
         console.log("你点击了查看按钮")
         console.log(index+1, row);
