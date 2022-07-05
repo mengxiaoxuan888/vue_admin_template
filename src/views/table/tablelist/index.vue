@@ -114,7 +114,7 @@ export default {
         }).then(() => {
           console.log("要修改的文章是："+id+region);
           this.$router.push({
-            path:'/form/index',
+            path:'/table/form',
             query: { 
                     id: id, 
                     region: region

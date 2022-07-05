@@ -4,9 +4,9 @@ import Layout from '@/layout'
 export const tables = [
   //表格展示页
   {
-    path: '/example',
+    path: '/table',
     component: Layout,
-    redirect: '/example/table',
+    redirect: '/table',
     name: 'Example',
     meta: { title: '社区', icon: 'el-icon-s-help' },
     children: [
@@ -23,6 +23,12 @@ export const tables = [
         meta: { title: '展示文章', icon: 'table' }
       },
       {
+        path: 'form',
+        name: 'Form',
+        component: () => import('@/views/table/form/index'),
+        meta: { title: '社区编辑文章', icon: 'form' }
+      },
+      {
         path: 'tinymce',
         component: () => import('@/views/table/tableeditor/tinymce'),
         name: 'TinymceDemo',
@@ -30,21 +36,7 @@ export const tables = [
       }
     ]
   },
-
-  //社区编辑文章
-  {
-    path: '/form',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        name: 'Form',
-        component: () => import('@/views/form/index'),
-        meta: { title: '社区编辑文章', icon: 'form' }
-      }
-    ]
-  },
-
+  
   //归类文章编辑
   {
     path: '/formprojects',

@@ -76,7 +76,7 @@ export default {
 	            }).then((res)=>{ 
                 console.log(res);
                 this.$router.push({
-                                  path:'/example/tableshow',//跳转到页面展示页
+                                  path:'/table/tableshow',//跳转到页面展示页
                                   query: { 
                                           id: res.data.id
                                         }
@@ -116,7 +116,7 @@ export default {
 	            }).then((res)=>{ 
                 console.log("回传的数据"+res);
                 this.$router.push({
-                                  path:'/example/tableshow',//跳转到页面展示页
+                                  path:'/table/tableshow',//跳转到页面展示页
                                   query: { 
                                           id: this.form.id
                                         }
