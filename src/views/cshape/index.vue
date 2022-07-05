@@ -493,7 +493,7 @@ import { getList } from '@/api/table'
       // this.get_cshape_XXX_PQA_Report()
     },
     methods: {
-      handleShow(id, row) {
+      handleShow(id, row) {//点击了查看按钮
         console.log("你点击了查看按钮")
         console.log(id, row);
         //跳转到文章查看页面
@@ -505,10 +505,28 @@ import { getList } from '@/api/table'
           }
         })
       },
-      handleEdit(id, row) {
-        console.log(id, row);
+      handleEdit(id, row) {//点击了编辑按钮
+        console.log(id, row.subname);
+        this.$confirm('是否对该文章进行编辑?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          console.log("要修改的文章是："+id+row.subname);
+          this.$router.push({
+            path:'/formprojects/index',
+            query: { 
+                    id: id
+                  }
+          })
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '取消修改'
+          });          
+        });
       },
-      handleDelete(id, row) {
+      handleDelete(id, row) {//点击了删除按钮
         console.log(id, row);
       },
       handleClick(tab) {//标签页点击触发
