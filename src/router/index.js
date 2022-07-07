@@ -10,7 +10,7 @@ import ct_menus from './routes/ct_menus'//CT程式
 import articleshow from './routes/articleshow'//文章展示
 import c_shape_menus from './routes/c_shape_menu'//C#程式
 import wktype_menus from './routes/wktype'//WKTYPE
-//import ptype_menus from './routes/ptype'//ptype
+import ptype_menus from './routes/ptype'//ptype
 //import report_menus from './routes/report'//报表
 //import webpage_menus from './routes/webpega'//网页
 //import new_person_menus from './routes/new_person'
@@ -43,7 +43,7 @@ export const constantRoutes = [
   ...ct_menus,//CT程式
   ...c_shape_menus,//C#程式
   ...wktype_menus,//WKTYPE
-  //...ptype_menus,//ptype
+  ...ptype_menus,//ptype
   //...report_menus,//报表
   //...webpage_menus,//网页
   //...novice,//新手村

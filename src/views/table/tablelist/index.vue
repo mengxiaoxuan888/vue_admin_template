@@ -25,11 +25,11 @@
           <span>{{ scope.row.region }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="内容" width="110" align="center">
+      <!-- <el-table-column label="内容" width="110" align="center">
         <template slot-scope="scope">
           {{ scope.row.desc }}
         </template>
-      </el-table-column>
+      </el-table-column> -->
       <el-table-column label="操作" width="180" align="center">
         <template slot-scope="scope">
           <el-row>
