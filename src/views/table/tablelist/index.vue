@@ -73,8 +73,8 @@ export default {
 
       total:null,//条目总数
       currentPage: 1,//一打开选择的页数
-      pagesizes:[3, 6, 9, 12],//每页显示的数量
-      pagesizeschange:3
+      pagesizes:[10, 20, 30, 10],//每页显示的数量
+      pagesizeschange:10
     }
   },
   created() {

@@ -1,6 +1,6 @@
 <template>
   <div style="padding:30px;">
-    <el-alert :closable="false" title="PTYPE相关的列表">
+    <el-alert :closable="false" title="REPORT报表相关的列表">
       <router-view />
     </el-alert>
     <el-tabs tab-position="left" v-model="activeName" @tab-click="handleClick">
@@ -73,15 +73,15 @@ import { getList } from '@/api/table'
     data() {
       return {
         listLoading: true,
-        activeName: 'cg70sn1',       
+        activeName: 'report1',       
         datas:null,
         datas_list:[
-          'cg70sn1',
-          'cg70sn2',
-          'cg70sn3',
-          'cg70sn4',
-          'cg70sn5',
-          'cg70sn6'
+          'report1',
+          'report2',
+          'report3',
+          'report4',
+          'report5',
+          'report6'
         ]
       }
     },
@@ -132,12 +132,12 @@ import { getList } from '@/api/table'
       get_datas(name){
         this.listLoading = true
         getList().then(response => {
-        this.$axios.get('/api/ptype/getdatas',{ 
+        this.$axios.get('/api/report/getdatas',{ 
               params: {
                 name:name
               }
           }).then(res=>{
-              console.log(res.data,"PTYPE程式数据")
+              console.log(res.data,"REPORT报表程式数据")
               this.datas=res.data
           })
           this.listLoading = false
