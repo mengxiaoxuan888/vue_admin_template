@@ -2,28 +2,16 @@
 import Layout from '@/layout'
 
 export const ptype_menus = [
-    {
-        path: '/nested',
+    {       
+        path: '/ptype',
         component: Layout,
-        redirect: '/nested/menu1',
-        name: 'Nested',
-        meta: {
-            title: 'P-TYPE',
-            icon: 'nested'
-        },
         children: [
-            {
-                path: 'menu1',
-                component: () => import('@/views/nested/menu1/index'), // Parent router-view
-                name: 'Menu1',
-                meta: { title: 'WKD03' }
-            },
-            {
-                path: 'menu2',
-                component: () => import('@/views/nested/menu2/index'),
-                name: 'Menu2',
-                meta: { title: 'WKD04' }
-            }
+        {
+            path: 'index',
+            name: 'Ptype',
+            component: () => import('@/views/ptype/index'),
+            meta: { title: 'PTYPE', icon: 'nested' }
+        }
         ]
     }
 ]
