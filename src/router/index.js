@@ -15,6 +15,8 @@ import report_menus from './routes/report'//报表
 import webpage_menus from './routes/webpega'//网页
 //import new_person_menus from './routes/new_person'
 import novice from './routes/novice'//新手村
+import laoziliao from './routes/laoziliao'//捞资料
+import sp from './routes/sp'//捞资料
 
 /**
 *注意：子菜单仅在路由子项时显示。长度>=1
@@ -41,11 +43,13 @@ export const constantRoutes = [
   //...new_person_menus,
   ...articleshow,//文章展示
   ...novice,//新手村
+  ...laoziliao,
   ...ct_menus,//CT程式
   ...c_shape_menus,//C#程式
   ...wktype_menus,//WKTYPE
   ...ptype_menus,//ptype
   ...report_menus,//报表
+  ...sp,
   ...webpage_menus,//网页
   // 404页必须放在末尾 !!!
   { path: '*', redirect: '/404', hidden: true }

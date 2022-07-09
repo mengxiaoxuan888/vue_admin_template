@@ -6,15 +6,7 @@
       </el-form-item>
       <el-form-item label="文章所属">
         <el-select v-model="form.region" placeholder="请选择所属分类">
-          <el-option label="小知识" value="xiaozhishi" />
-          <el-option label="CT程式" value="CT" />
-          <el-option label="C#程式" value="C#" />
-          <el-option label="WKTYPE" value="WKTYPE" />
-          <el-option label="P-TYPE" value="PTYPE" />
-          <el-option label="报表" value="REPORT" />
-          <el-option label="网页" value="WEB" />
-          <el-option label="SP" value="SP" />
-          <el-option label="社区" value="community" />
+          <el-option label="REPORT" value="REPORT" />
         </el-select>
       </el-form-item>
       <el-form-item label="文章编辑">
@@ -77,7 +69,7 @@ export default {
 	            }).then((res)=>{ 
                 console.log(res);
                 this.$router.push({
-                                  path:'/table/tableshow',//跳转到页面展示页
+                                  path:'/report/tableshow',//跳转到页面展示页
                                   query: { 
                                           id: res.data.id
                                         }
@@ -117,7 +109,7 @@ export default {
 	            }).then((res)=>{ 
                 console.log("回传的数据"+res);
                 this.$router.push({
-                                  path:'/table/tableshow',//跳转到页面展示页
+                                  path:'/report/tableshow',//跳转到页面展示页
                                   query: { 
                                           id: this.form.id
                                         }
@@ -147,7 +139,7 @@ export default {
         console.log(this.$route.query)//获取路由地址
         console.log(this.$route.query.id)//获取路由id参数
         console.log(this.$route.query.region)//获取路由region参数
-        this.$axios.get('/api/table/gettableshow',{  //params参数必写 , 如果没有参数传{}也可以
+        this.$axios.get('/api/report/gettableshow',{  //params参数必写 , 如果没有参数传{}也可以
                         params: {  
                                   id: this.$route.query.id//文章id
                                 }

@@ -3,10 +3,10 @@ import Layout from '@/layout'
 
 export const webpage_menus = [
     {
-        path: '/nested',
+        path: '/webpega',
         component: Layout,
-        redirect: '/nested/menu1',
-        name: 'Nested',
+        redirect: '/webpega/menu1',
+        name: 'Webpega',
         meta: {
             title: '网页',
             icon: 'nested'
@@ -14,15 +14,15 @@ export const webpage_menus = [
         children: [
             {
                 path: 'menu1',
-                component: () => import('@/views/nested/menu1/index'), // Parent router-view
+                component: () => import('@/views/webpega/menu1/index'),
                 name: 'Menu1',
-                meta: { title: 'WKD03' }
+                meta: { title: 'SFIS网页' }
             },
             {
                 path: 'menu2',
-                component: () => import('@/views/nested/menu2/index'),
+                component: () => import('@/views/webpega/menu2/index'),
                 name: 'Menu2',
-                meta: { title: 'WKD04' }
+                meta: { title: '其他网页' }
             }
         ]
     }
