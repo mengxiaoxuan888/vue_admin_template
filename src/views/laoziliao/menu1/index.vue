@@ -1,69 +1,84 @@
 <template>
-	<el-tabs type="border-card" v-model="activeName" @tab-click="handleClick">
-		<el-tab-pane label="用户管理" name="first">
-<p>1.帮忙查询XXX资料信息</p>
-<pre class="mysqlys">
-select * from xxx where xxx='xxx'
-select * from xxx where xxx='xxx'
-</pre>
-<p>2.帮忙查询XXX资料信息</p>
-<pre class="mysqlys">
-select * from xxx where xxx='xxx'
-select * from xxx where xxx='xxx'
-</pre>
-<p>3.帮忙查询XXX资料信息</p>
-<pre class="mysqlys">
-select * from xxx where xxx='xxx'
-select * from xxx where xxx='xxx'
-</pre>
-<p>4.帮忙查询XXX资料信息</p>
-<pre class="mysqlys">
-select * from xxx where xxx='xxx'
-select * from xxx where xxx='xxx'
-</pre>
-<p>5.帮忙查询XXX资料信息</p>
-<pre class="mysqlys">
-select * from xxx where xxx='xxx'
-select * from xxx where xxx='xxx'
-</pre>
-<p>6.帮忙查询XXX资料信息</p>
-<pre class="mysqlys">
-select * from xxx where xxx='xxx'
-select * from xxx where xxx='xxx'
-</pre>
-		</el-tab-pane>
-		<el-tab-pane label="配置管理" name="second">配置管理</el-tab-pane>
-	</el-tabs>
+  <div style="padding:30px;">
+    <el-alert :closable="false" title="捞资料相关语句">
+      <router-view />
+    </el-alert>
+    <el-tabs type="border-card" v-model="activeName" @tab-click="handleClick">
+      <el-tab-pane v-for="(item,i) in datas_list" :key="i" :label='item' :name='item'>
+        <div
+          v-loading="listLoading"
+		  v-for="(item,i) in datas" :key="i"
+          element-loading-text="Loading">
+			<p>{{item.id}}.{{item.name}}</p>
+			<pre class="mysqlys" v-html="item.sql"></pre>
+			<el-button size="small" type="danger" round @click="change(item.id)" v-model="item.id">修改</el-button>	
+        </div>
+      </el-tab-pane>
+    </el-tabs>
+  </div>
 </template>
+
 <script>
-	export default {
-		data() {
-			return {
-				activeName: 'first'
-			};
-		},
-		methods: {
-			handleClick(tab) {
-        		console.log('我点击了');
-				console.log(tab);
-        		console.log(tab.name);
-        		console.log('我结束了');
-				if (tab.name == 'second') {
-					// 触发‘配置管理’事件
-					this.second();
-				} else {
-					this.first();
-				}
-			},
-			first() {
-				console.log('我是用户管理');
-			},
-			second() {
-				console.log('我是配置管理');
-			}
-		}
-	};
+import { getList } from '@/api/table'
+  export default {
+    data() {
+      return {
+        listLoading: true,
+        activeName: '捞资料1',       
+        datas:null,
+        datas_list:[
+          '捞资料1',
+          '捞资料2'
+        ]
+      }
+    },
+    created(){
+      this.get_datas(this.activeName)
+    },
+    methods: {
+      handleClick(tab) {
+        console.log(tab.name);
+        this.get_datas(tab.name);
+      },
+      get_datas(name){
+        this.listLoading = true
+        getList().then(response => {
+        this.$axios.get('/api/laoziliao/getdatas',{ 
+              params: {
+                name:name
+              }
+          }).then(res=>{
+              console.log(res.data,"捞资料数据")
+              this.datas=res.data
+          })
+          this.listLoading = false
+        })
+      },
+	  //点击修改按钮触发的事件
+    change(id) {
+        this.$confirm('是否对该文章进行修改?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          console.log("要修改的文章是："+id);
+          this.$router.push({
+            path:'/laoziliao/menu2',
+            query: { 
+                    id: id
+                  }
+          })
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '取消修改'
+          });          
+        });
+    },
+    }
+  }
 </script>
+
 <style scoped>
 .mysqlys {
     margin-left: 5px;
@@ -74,3 +89,4 @@ select * from xxx where xxx='xxx'
 	background-color:aquamarine;
 }
 </style>
+

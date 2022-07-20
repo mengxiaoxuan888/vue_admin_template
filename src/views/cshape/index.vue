@@ -9,7 +9,7 @@
           v-loading="listLoading"
           :data='cshape'
           element-loading-text="Loading"
-          height="440"
+          height="1500"
           fit
           border
           stripe
@@ -37,7 +37,7 @@
           </el-table-column>
           <el-table-column
             label="简介"
-            width="400">
+            width="200">
             <template slot-scope="scope">
               <span style="margin-left: 10px">{{ scope.row.introduce }}</span>
             </template>
@@ -471,9 +471,56 @@ import { getList } from '@/api/table'
           'CBS_SYS',
           'CHK_ITEM',
           'FAEREGION_XXX',
+          'FAKESTATION',
+          'ISIGHT_XXX',
           'MLB.STOCK',
+          'XXX.Label',
           'XXX.PQA_Report',
-          'RIM.STOCK'
+          'XXX.TRAVELINGCARD',
+          'XXX.WEIGHT',
+          'MTK_NEW',
+          'ODMPRINT',
+          'PAM_STOCK',
+          'PM_MO',
+          'REPORT.XXX',
+          'REPORT.QOH',
+          'RIM_STOCK',
+          'SFIS.BINTRACK',
+          'SFIS.CG_STOCK_NEW',
+          'SFIS.CODEPRINTER',
+          'SFIS.CSD',
+          'SFIS.CTRL',
+          'SFIS.ESOP',
+          'SFIS.LCS',
+          'SFIS.XXX',
+          'SFIS.OFFLINE_NEW',
+          'SFIS.REPAIR',
+          'SFIS.RETURN',
+          'SFIS.RFID',
+          'SFIS.SCRAP_NEW',
+          'SFIS.TRY_RUN',
+          'SFIS.TransPallet',
+          'SFIS.UTK_LAB',
+          'SIFS.PANDA',
+          'SMT_ITEM',
+          'STOCK_SFIS_XXX',
+          'WIN_REWORK',
+          '下面是成仓程式',
+          'C_Into_WareHouse',
+          'SFIS.WMS',
+          'SFIS.MMD',
+          'SFIS.WAREHOUSE',
+          'SFIS.PPS',
+          'SFIS.LMS-GB',
+          'Kanban.Material',
+          'PPS',
+          'PPS_HOLD',
+          '下面是MIS程式',
+          'LAB_IOFILE',
+          'ROUTE',
+          'SFIS.MAINTAINTOOL',
+          'SIMDCS',
+          'SMO_STAT'
         ]
         // cshape_AUTHENTIC_HOLD: null,
         // cshape_CBS_SYS: null,
